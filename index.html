@@ -6,29 +6,21 @@
 <img id="photo">
 
 <script>
+var id = document.all
 navigator.mediaDevices.getUserMedia({video: true})
 .then(function(stream) {
-  var video=document.all.video
+  var video = id.video
   video.srcObject = stream
   video.play()
-  video.onclick=click
+  video.onclick = click
 })
 
 function click(){
-  var canvas = document.all.canvas
-  var context = canvas.getContext('2d')
-
-  var video=document.all.video
-  var height = video.videoHeight
-  var width = video.videoWidth
-
-  canvas.width = width
-  canvas.height = height
-  var video=document.all.video
-  context.drawImage(video, 0, 0, width, height)
-
-  var data = canvas.toDataURL('image/png')
-  var photo=document.all.photo
-  photo.setAttribute('src', data)
+  var canvas = id.canvas
+  var video = id.video
+  var height = canvas.height = video.videoHeight
+  var width = canvas.width = video.videoWidth
+  canvas.getContext('2d').drawImage(video, 0, 0, width, height)
+  id.photo.src = canvas.toDataURL('image/png')
 }
 </script>
