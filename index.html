@@ -1,0 +1,34 @@
+<title>camera</title>
+<!-- https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Taking_still_photos -->
+
+<video id="video"></video>
+<canvas id="canvas" style="display: none"></canvas>
+<img id="photo">
+
+<script>
+navigator.mediaDevices.getUserMedia({video: true})
+.then(function(stream) {
+  var video=document.all.video
+  video.srcObject = stream
+  video.play()
+  video.onclick=click
+})
+
+function click(){
+  var canvas = document.all.canvas
+  var context = canvas.getContext('2d')
+
+  var video=document.all.video
+  var height = video.videoHeight
+  var width = video.videoWidth
+
+  canvas.width = width
+  canvas.height = height
+  var video=document.all.video
+  context.drawImage(video, 0, 0, width, height)
+
+  var data = canvas.toDataURL('image/png')
+  var photo=document.all.photo
+  photo.setAttribute('src', data)
+}
+</script>
