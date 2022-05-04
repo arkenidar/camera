@@ -3,7 +3,7 @@
 
 <video id="video"></video>
 <canvas id="canvas" style="display: none"></canvas>
-<img id="photo">
+<a id="link" download="photo.png"><img id="photo"></a>
 
 <script>
 var id = document.all
@@ -22,5 +22,6 @@ function click(){
   var width = canvas.width = video.videoWidth
   canvas.getContext('2d').drawImage(video, 0, 0, width, height)
   id.photo.src = canvas.toDataURL('image/png')
+  id.link.href = id.photo.src.replace("image/png", "image/octet-stream")
 }
 </script>
