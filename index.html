@@ -1,29 +1,21 @@
-<title>camera</title>
-<!-- https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Taking_still_photos original code tutorial on Mozilla MDN. -->
-<!-- https://github.com/arkenidar/camera this code on GitHub.com , git repository. -->
-<!-- https://arkenidar.github.io/camera/ this code on GitHub.io , website that publishes the above git repository. -->
+<!DOCTYPE html>
+<html lang="en">
 
-<video id="video"></video>
-<canvas id="canvas" style="display: none"></canvas>
-<a id="link" download="photo.png"><img id="photo"></a>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>camera for photos</title>
+</head>
 
-<script>
-var id = document.all
-navigator.mediaDevices.getUserMedia({video: true})
-.then(function(stream) {
-  var video = id.video
-  video.srcObject = stream
-  video.play()
-  video.onclick = click
-})
+<body>
+  <video id="video"></video>
+  <canvas id="canvas" style="display: none"></canvas>
+  <a id="link" download="photo.png"><img id="photo"></a>
+  <script src="camera.js"></script>
+  <script src="markdown.js"></script>
+  <div class="markdown-url" data-url="readme.md"></div>
+  <script src="show-source.js" data-href="camera.js"></script>
+  <script src="show-source.js" data-href="index.html"></script>
+</body>
 
-function click(){
-  var canvas = id.canvas
-  var video = id.video
-  var height = canvas.height = video.videoHeight
-  var width = canvas.width = video.videoWidth
-  canvas.getContext('2d').drawImage(video, 0, 0, width, height)
-  id.photo.src = canvas.toDataURL('image/png')
-  id.link.href = id.photo.src.replace("image/png", "image/octet-stream")
-}
-</script>
+</html>
